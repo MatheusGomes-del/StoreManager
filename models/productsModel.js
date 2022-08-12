@@ -4,6 +4,11 @@ const getAll = async () => {
   try {
     const QUERY = 'SELECT * FROM StoreManager.products ORDER BY id;';
     const [result] = await connection.execute(QUERY);
+
+    if (!result) {
+      throw new Error('something wrong');
+    }
+
     return result;
   } catch (erro) {
     return erro.message;
@@ -23,9 +28,9 @@ const getProductById = async (id) => {
 const registerProduct = async (name) => {
   try {
     const QUERY = 'INSERT INTO StoreManager.products (name) VALUES (?);';
-    const [register] = await connection.query(QUERY, name);
-    console.log(register);
-    return { id: register.insertId, name };
+    const [{ insertId }] = await connection.query(QUERY, name);
+
+    return { insertId, name };
   } catch (erro) {
     return erro.message;
   }
