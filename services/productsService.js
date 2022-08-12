@@ -20,7 +20,13 @@ const getProductById = async (id) => {
   return { code: 200, product };
 };
 
+const registerProduct = async (name) => {
+  const product = await productsModel.registerProduct(name);
+  return product;
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
+  registerProduct,
 };
