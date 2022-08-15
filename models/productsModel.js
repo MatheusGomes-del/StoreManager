@@ -18,8 +18,8 @@ const getAll = async () => {
 const getProductById = async (id) => {
   try {
      const QUERY = 'SELECT * FROM StoreManager.products WHERE id = ?;';
-     const [product] = await connection.query(QUERY, [id]);
-     return product;
+    const [product] = await connection.query(QUERY, [id]);
+    return product;
   } catch (erro) {
     return erro.message;
   }
@@ -36,8 +36,18 @@ const registerProduct = async (name) => {
   }
 };
 
+const updateProduct = async (id, name) => {
+  const QUERY = `UPDATE StoreManager.products
+                 SET name = ? WHERE id = ?;`;
+  
+   await connection.execute(QUERY, [name, id]);
+
+  return { id, name };
+};
+
 module.exports = {
   getAll,
   getProductById,
   registerProduct,
+  updateProduct,
 };

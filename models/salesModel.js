@@ -30,7 +30,7 @@ const getSaleById = async (id) => {
   const [result] = await connection.execute(QUERY, [id]);
 
   return result;
-}; 
+};
 
 module.exports = {
   registerSale,
