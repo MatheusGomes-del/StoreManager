@@ -26,7 +26,7 @@ describe('test layer Model', async () => {
 
     before(() => {
       sinon.stub(connection, 'execute').resolves(products);
-    });
+    }); 
 
     after(() => {
       connection.execute.restore();
@@ -35,7 +35,7 @@ describe('test layer Model', async () => {
     it('test if return a object', async () => {
       const result = await productsModel.getAll();
       expect(result).to.be.equal(products[0]);
-      })
+    });
   })
   
 
@@ -66,9 +66,27 @@ describe('test layer Model', async () => {
     })
 
     it('test if return the product', async () => {
-        const result = await productsModel.registerProduct();
-        expect(result).to.be.equal(idInsert.insertId);
-      })
+      const result = await productsModel.registerProduct('product');
+      expect(result).to.be.deep.equal({ insertId:idInsert.insertId, name: 'product' });
+    });
+  });
+
+
+  describe('test updateProduct', () => {
+     const resultFunc = { id: 4, name: 'Product' }
+    before(() => {
+      sinon.stub(connection, 'execute').resolves([resultFunc]);
+    });
+
+    after(() => {
+      connection.execute.restore();
+    });
+
+    it('test if updated the product', async () => {
+      const productUpdated = await productsModel.updateProduct(4, 'Product');
+      expect(productUpdated).to.be.deep.equal(resultFunc);
+    });
   })
+  
 
 })

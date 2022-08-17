@@ -22,6 +22,7 @@ const getSaleById = async (req, res) => {
 
   return res.status(200).json(chooseSale);
 };
+
 module.exports = {
   registerSale,
   getAllSales,

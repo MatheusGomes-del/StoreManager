@@ -3,12 +3,6 @@ const salesModel = require('../models/salesModel');
 /* req 06 */
 const registerSale = async (saleSold) => {
   const saleId = await salesModel.createSaleId();
-
-  Promise.all(
-    saleSold.map(async (sales) => {
-      await salesModel.registerSale(saleId.id, sales);
-    }),
-  );
   
   return { id: saleId.id, saleId };
 };
@@ -32,7 +26,7 @@ const getSaleById = async (id) => {
 
   return { code: 200, chooseSale };
 };
-
+ 
 module.exports = { 
   registerSale,
   getSales,
