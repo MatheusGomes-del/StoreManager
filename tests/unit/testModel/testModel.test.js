@@ -88,5 +88,13 @@ describe('test layer Model', async () => {
     });
   })
   
+  describe('delete Product', () => {
+    
+    
+    
+    it('', () => {
+      
+    });
+  });
 
 })
