@@ -1,9 +1,9 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const productsService = require('../../../services/productsService');
-const productsModel = require('../../../models/productsModel');
+const productsService = require('../../services/productsService');
+const productsModel = require('../../models/productsModel');
 
-const mock = require('../mock');
+const mock = require('./mock');
 const res = require('express/lib/response');
 
 describe('Test Service', () => {
@@ -80,6 +80,7 @@ describe('Test Service', () => {
        
       const product = mock.updateProduct;
       sinon.stub(productsModel, 'updateProduct').resolves(product);
+      sinon.stub(productsModel, 'getProductById').resolves(product.id);
       const mockService = { code: 200, updatedProduct: product };
       const result = await productsService.updateProduct(product.id, product.name);
       expect(result).to.be.deep.equal(mockService);
@@ -118,7 +119,7 @@ describe('Test Service', () => {
     it('Test if return code 204', async () => {
       const code = { code: 204 };
       sinon.stub(productsModel, 'deleteProduct').resolves(4);
-
+      sinon.stub(productsModel, 'getProductById').resolves(4);
       const result = await productsService.deleteProduct(4);
       expect(result).to.be.deep.equal(code);
     });

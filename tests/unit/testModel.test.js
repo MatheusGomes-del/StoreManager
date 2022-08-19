@@ -1,9 +1,9 @@
-const connection = require('../../../models/connection/connection');
+const connection = require('../../models/connection/connection');
 const sinon = require('sinon');
 const { expect } = require('chai');
-const productsModel = require('../../../models/productsModel');
+const productsModel = require('../../models/productsModel');
 const res = require('express/lib/response');
-const { execute } = require('../../../models/connection/connection');
+const { execute } = require('../../models/connection/connection');
 
 describe('test layer Model', async () => {
 
