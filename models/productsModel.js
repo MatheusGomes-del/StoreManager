@@ -29,7 +29,6 @@ const registerProduct = async (name) => {
   try {
     const QUERY = 'INSERT INTO StoreManager.products (name) VALUES (?);';
     const [{ insertId }] = await connection.query(QUERY, name);
-
     return { insertId, name };
   } catch (erro) {
     return erro.message;
