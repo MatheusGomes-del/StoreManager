@@ -1,10 +1,16 @@
 const connection = require('./connection/connection');
 
-const registerSale = async (id, { productId, quantity }) => { 
-  const QUERY = `INSERT INTO StoreManager.sales_products 
-  (sale_id, product_id, quantity) VALUES (?, ?, ?)`;
+const registerSale = async (sale, date) => {
+  const QUERY = `INSERT INTO StoreManager.sales_products (sale_id, product_id , quantity)
+  VALUE (?,?,?);`;
+  const QUERY2 = 'INSERT INTO StoreManager.sales (date) VALUES(?);';
+  const [saleId] = await connection.query(QUERY2, [date]);
+  
+  sale.forEach(async ({ productId, quantity }) => {
+    await connection.query(QUERY, [saleId.insertId, productId, quantity]);  
+  });
 
-  await connection.query(QUERY, [id, productId, quantity]);
+  return { id: saleId.insertId, itemsSold: sale };
 };
 
 const getSales = async () => {
@@ -26,7 +32,7 @@ const getSaleById = async (id) => {
 };
 
 module.exports = {
-  registerSale,
   getSales,
   getSaleById,
+  registerSale,
 };

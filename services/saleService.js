@@ -1,11 +1,23 @@
 const salesModel = require('../models/salesModel');
 
-/* req 06 */
-/* const registerSale = async () => {
-  const saleId = await salesModel.createSaleId();
+const createDate = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const day = date.getDate();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  const hour = date.getHours();
+
+  return `${year}-${month}-${day} ${hour}:${minutes}:${seconds}`;
+};
+
+const registerSale = async (sale) => {
+  const date = createDate();
+  const saleItem = await salesModel.registerSale(sale, date);
   
-  return { id: saleId.id, saleId };
-}; */
+  return saleItem;
+};
 
 const getSales = async () => {
   const result = await salesModel.getSales();
@@ -30,4 +42,5 @@ const getSaleById = async (id) => {
 module.exports = { 
   getSales,
   getSaleById,
+  registerSale,
 };
