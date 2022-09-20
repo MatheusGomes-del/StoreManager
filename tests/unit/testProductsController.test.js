@@ -47,32 +47,12 @@ describe('Teste ProductsController', () => {
     });
   });
 
-  /* describe('Test Function getProducstById message', () => {
-    
-    beforeEach(sinon.restore);
-
-    it('Test if return the message', async () => {
-      const message = { message: 'Product not found' };
-      sinon.stub(productsService, 'getProductById').returns(message);
-      await ProductsController.getProductById(request, response);
-      expect(response.status.calledWith(404)).to.be.equal(true);
-      expect(response.json.calledWith({ code: 404, message })).to.be.equal(true);
-    });
-  }); */
-
   describe('Test Function register', () => {
     
     it('Test if return the register product', async () => {
       await ProductsController.registerProduct(request, response);
       expect(response.status.calledWith(201)).to.be.equal(true);
       expect(response.json.calledWith(registerMock)).to.be.equal(true);
-    });
-  });
-
-  describe('', () => {
-    
-    it('', () => {
-
     });
   });
 });
