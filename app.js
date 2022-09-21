@@ -7,7 +7,7 @@ const salesMiddleware = require('./middlewares/productsMiddleware/salesMiddlewar
 
 const app = express();
 app.use(body.json());
-// não remova esse endpoint, é para o avaliador funcionar
+
 app.get('/', (_request, response) => {
   response.send();
 });
