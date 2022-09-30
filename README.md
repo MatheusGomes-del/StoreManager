@@ -47,6 +47,7 @@ e a utilização do banco de dados MySql.Foi utilizado o modelo de arquitetura d
 :warning: [Sinon](https://sinonjs.org/) <br>
 :warning: [Chai](https://www.chaijs.com/) <br>
 :warning: [MySql](https://www.mysql.com/)
+:warning: [Sequelize] (https://sequelize.org/)
 
 ## Como rodar a aplicação :arrow_forward:
 
